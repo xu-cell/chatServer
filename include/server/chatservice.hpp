@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <functional>
 #include "usermodel.hpp"
+#include "offlinemessagemodel.hpp"
 #include "json.hpp"
 #include <mutex>
 using json  = nlohmann::json;
@@ -38,7 +39,8 @@ private:
     unordered_map<int,TcpConnectionPtr> userConn_;
     //数据操作类对象
     UserModel usermodel_;
-
+    OfflineMsgModel offlinemsgmodel_;
+    
     //业务层维护的用户连接，是所有线程共享的，所以我们要保证线程安全
     mutex ConnMutex_;
 };
