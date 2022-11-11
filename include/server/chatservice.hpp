@@ -28,6 +28,8 @@ public:
     void ClientCloseEX(const TcpConnectionPtr& conn);
     //点对点聊天
     void One_Chat(const TcpConnectionPtr& conn,json& js,Timestamp time);
+    //服务器CTRL_C 挂掉之后的处理代码；
+    void reset();
     //获取消息对应的处理器
     msgHandler getmsgHandler(int msgid);
 private:

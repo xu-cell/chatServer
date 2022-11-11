@@ -153,3 +153,7 @@ void ChatService::One_Chat(const TcpConnectionPtr& conn,json& js,Timestamp time)
     //接受方不在线
     offlinemsgmodel_.insert(toid,js.dump());
 }
+void ChatService::reset()
+{
+    usermodel_.resetState();
+}

@@ -11,6 +11,8 @@ public:
     User query(int id);
     //更新用户信息
     bool updateState(User user); 
+    //服务器意外结束，将用户状态全部调整为offline
+    void resetState();
 };
 
 #endif
