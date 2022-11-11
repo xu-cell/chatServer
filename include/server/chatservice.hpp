@@ -25,6 +25,8 @@ public:
     void reg(const TcpConnectionPtr& conn,json& js,Timestamp time);
     //客户端异常退出处理
     void ClientCloseEX(const TcpConnectionPtr& conn);
+    //点对点聊天
+    void One_Chat(const TcpConnectionPtr& conn,json& js,Timestamp time);
     //获取消息对应的处理器
     msgHandler getmsgHandler(int msgid);
 private:

@@ -109,6 +109,7 @@ ChatService::ChatService()
 {
     msgHandlerMap_.insert({LOGIN_MSG,std::bind(&ChatService::login,this,_1,_2,_3)});
     msgHandlerMap_.insert({REG_MSG,std::bind(&ChatService::reg,this,_1,_2,_3)});    
+    msgHandlerMap_.insert({ONE_CHAT_MSG,std::bind(&ChatService::One_Chat,this,_1,_2,_3)});
 }
 //获取消息对应的处理器
 msgHandler ChatService::getmsgHandler(int msgid)
@@ -124,4 +125,22 @@ msgHandler ChatService::getmsgHandler(int msgid)
     {
         return msgHandlerMap_[msgid];
     }
+}
+//点对点聊天业务
+void ChatService::One_Chat(const TcpConnectionPtr& conn,json& js,Timestamp time)
+{
+    int toid = js["to"].get<int>();
+    {
+        lock_guard<mutex> lock(ConnMutex_);
+        auto it = userConn_.find(toid);
+        //接受方在线
+        if(it != userConn_.end())
+        {
+            it->second->send(js.dump());
+            return;
+        }
+    }
+
+    //接受方不在线
+    
 }
