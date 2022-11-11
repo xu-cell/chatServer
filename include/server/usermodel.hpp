@@ -7,6 +7,10 @@ class UserModel
 public:
     //user表的增加方法
     bool insert(User &user);
+    //根据用户id查询用户信息
+    User query(int id);
+    //更新用户信息
+    bool updateState(User user); 
 };
 
 #endif
