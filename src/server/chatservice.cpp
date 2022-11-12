@@ -51,6 +51,23 @@ void ChatService::login(const TcpConnectionPtr &conn, json &js, Timestamp time)
                 //返回离线消费后，清空该用户的所有离线消息
                 offlinemsgmodel_.remove(id);
             }
+
+            //返回用户的好友信息
+            vector<User> userVec = friendmodel_.query(id);
+            if(!userVec.empty())
+            {
+                vector<string>vec2;
+                for(User &user:userVec)
+                {
+                    json js;
+                    js["id"] = user.getID();
+                    js["name"] = user.getName();
+                    js["state"] = user.getState();
+                    vec2.push_back(js.dump());
+                }
+                response["friends"] = vec2;
+            }
+
             conn->send(response.dump());
         }
     }
@@ -119,6 +136,8 @@ ChatService::ChatService()
     msgHandlerMap_.insert({LOGIN_MSG,std::bind(&ChatService::login,this,_1,_2,_3)});
     msgHandlerMap_.insert({REG_MSG,std::bind(&ChatService::reg,this,_1,_2,_3)});    
     msgHandlerMap_.insert({ONE_CHAT_MSG,std::bind(&ChatService::One_Chat,this,_1,_2,_3)});
+    msgHandlerMap_.insert({ADD_FRIEND_MSG,std::bind(&ChatService::addFriend,this,_1,_2,_3)});
+    
 }
 //获取消息对应的处理器
 msgHandler ChatService::getmsgHandler(int msgid)
@@ -156,4 +175,12 @@ void ChatService::One_Chat(const TcpConnectionPtr& conn,json& js,Timestamp time)
 void ChatService::reset()
 {
     usermodel_.resetState();
+}
+ //添加好友
+void ChatService::addFriend(const TcpConnectionPtr &conn, json &js, Timestamp time)
+{
+    int userid = js["id"].get<int>();
+    int friendid = js["friendid"].get<int>();
+
+    friendmodel_.insert(userid,friendid);
 }

@@ -6,6 +6,7 @@
 #include <functional>
 #include "usermodel.hpp"
 #include "offlinemessagemodel.hpp"
+#include "friendmodel.hpp"
 #include "json.hpp"
 #include <mutex>
 using json  = nlohmann::json;
@@ -28,6 +29,9 @@ public:
     void ClientCloseEX(const TcpConnectionPtr& conn);
     //点对点聊天
     void One_Chat(const TcpConnectionPtr& conn,json& js,Timestamp time);
+    
+    //添加好友
+    void addFriend(const TcpConnectionPtr& conn,json& js,Timestamp time);
     //服务器CTRL_C 挂掉之后的处理代码；
     void reset();
     //获取消息对应的处理器
@@ -42,7 +46,8 @@ private:
     //数据操作类对象
     UserModel usermodel_;
     OfflineMsgModel offlinemsgmodel_;
-    
+    FriendModel friendmodel_;
+
     //业务层维护的用户连接，是所有线程共享的，所以我们要保证线程安全
     mutex ConnMutex_;
 };
