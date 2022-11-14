@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <functional>
 #include "usermodel.hpp"
+#include "groupmodel.hpp"
 #include "offlinemessagemodel.hpp"
 #include "friendmodel.hpp"
 #include "json.hpp"
@@ -29,7 +30,12 @@ public:
     void ClientCloseEX(const TcpConnectionPtr& conn);
     //点对点聊天
     void One_Chat(const TcpConnectionPtr& conn,json& js,Timestamp time);
-    
+    //创建群组的业务
+    void createGroup(const TcpConnectionPtr& conn,json& js,Timestamp time);
+    //加群
+    void addGroup(const TcpConnectionPtr& conn,json& js,Timestamp time);
+    //群聊
+    void groupChat(const TcpConnectionPtr& conn,json& js,Timestamp time);
     //添加好友
     void addFriend(const TcpConnectionPtr& conn,json& js,Timestamp time);
     //服务器CTRL_C 挂掉之后的处理代码；
@@ -47,7 +53,7 @@ private:
     UserModel usermodel_;
     OfflineMsgModel offlinemsgmodel_;
     FriendModel friendmodel_;
-
+    GroupModel groupmodel_;
     //业务层维护的用户连接，是所有线程共享的，所以我们要保证线程安全
     mutex ConnMutex_;
 };

@@ -1,0 +1,42 @@
+[
+{
+  "directory": "/home/ecs-user/chatServer/build/src/server",
+  "command": "/usr/bin/g++   -I/home/ecs-user/chatServer/include -I/home/ecs-user/chatServer/include/server -I/home/ecs-user/chatServer/include/server/db -I/home/ecs-user/chatServer/include/server/model -I/home/ecs-user/chatServer/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/chatserver.cpp.o -c /home/ecs-user/chatServer/src/server/chatserver.cpp",
+  "file": "/home/ecs-user/chatServer/src/server/chatserver.cpp"
+},
+{
+  "directory": "/home/ecs-user/chatServer/build/src/server",
+  "command": "/usr/bin/g++   -I/home/ecs-user/chatServer/include -I/home/ecs-user/chatServer/include/server -I/home/ecs-user/chatServer/include/server/db -I/home/ecs-user/chatServer/include/server/model -I/home/ecs-user/chatServer/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/chatservice.cpp.o -c /home/ecs-user/chatServer/src/server/chatservice.cpp",
+  "file": "/home/ecs-user/chatServer/src/server/chatservice.cpp"
+},
+{
+  "directory": "/home/ecs-user/chatServer/build/src/server",
+  "command": "/usr/bin/g++   -I/home/ecs-user/chatServer/include -I/home/ecs-user/chatServer/include/server -I/home/ecs-user/chatServer/include/server/db -I/home/ecs-user/chatServer/include/server/model -I/home/ecs-user/chatServer/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/main.cpp.o -c /home/ecs-user/chatServer/src/server/main.cpp",
+  "file": "/home/ecs-user/chatServer/src/server/main.cpp"
+},
+{
+  "directory": "/home/ecs-user/chatServer/build/src/server",
+  "command": "/usr/bin/g++   -I/home/ecs-user/chatServer/include -I/home/ecs-user/chatServer/include/server -I/home/ecs-user/chatServer/include/server/db -I/home/ecs-user/chatServer/include/server/model -I/home/ecs-user/chatServer/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/db/db.cpp.o -c /home/ecs-user/chatServer/src/server/db/db.cpp",
+  "file": "/home/ecs-user/chatServer/src/server/db/db.cpp"
+},
+{
+  "directory": "/home/ecs-user/chatServer/build/src/server",
+  "command": "/usr/bin/g++   -I/home/ecs-user/chatServer/include -I/home/ecs-user/chatServer/include/server -I/home/ecs-user/chatServer/include/server/db -I/home/ecs-user/chatServer/include/server/model -I/home/ecs-user/chatServer/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/model/friendmodel.cpp.o -c /home/ecs-user/chatServer/src/server/model/friendmodel.cpp",
+  "file": "/home/ecs-user/chatServer/src/server/model/friendmodel.cpp"
+},
+{
+  "directory": "/home/ecs-user/chatServer/build/src/server",
+  "command": "/usr/bin/g++   -I/home/ecs-user/chatServer/include -I/home/ecs-user/chatServer/include/server -I/home/ecs-user/chatServer/include/server/db -I/home/ecs-user/chatServer/include/server/model -I/home/ecs-user/chatServer/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/model/groupmodel.cpp.o -c /home/ecs-user/chatServer/src/server/model/groupmodel.cpp",
+  "file": "/home/ecs-user/chatServer/src/server/model/groupmodel.cpp"
+},
+{
+  "directory": "/home/ecs-user/chatServer/build/src/server",
+  "command": "/usr/bin/g++   -I/home/ecs-user/chatServer/include -I/home/ecs-user/chatServer/include/server -I/home/ecs-user/chatServer/include/server/db -I/home/ecs-user/chatServer/include/server/model -I/home/ecs-user/chatServer/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/model/offlinemessagemodel.cpp.o -c /home/ecs-user/chatServer/src/server/model/offlinemessagemodel.cpp",
+  "file": "/home/ecs-user/chatServer/src/server/model/offlinemessagemodel.cpp"
+},
+{
+  "directory": "/home/ecs-user/chatServer/build/src/server",
+  "command": "/usr/bin/g++   -I/home/ecs-user/chatServer/include -I/home/ecs-user/chatServer/include/server -I/home/ecs-user/chatServer/include/server/db -I/home/ecs-user/chatServer/include/server/model -I/home/ecs-user/chatServer/thirdparty  -g -g   -o CMakeFiles/ChatServer.dir/model/usermodel.cpp.o -c /home/ecs-user/chatServer/src/server/model/usermodel.cpp",
+  "file": "/home/ecs-user/chatServer/src/server/model/usermodel.cpp"
+}
+]

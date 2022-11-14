@@ -137,6 +137,9 @@ ChatService::ChatService()
     msgHandlerMap_.insert({REG_MSG,std::bind(&ChatService::reg,this,_1,_2,_3)});    
     msgHandlerMap_.insert({ONE_CHAT_MSG,std::bind(&ChatService::One_Chat,this,_1,_2,_3)});
     msgHandlerMap_.insert({ADD_FRIEND_MSG,std::bind(&ChatService::addFriend,this,_1,_2,_3)});
+    msgHandlerMap_.insert({ADD_GROUP_MSG,std::bind(&ChatService::addGroup,this,_1,_2,_3)});
+    msgHandlerMap_.insert({CREATE_GROUP_MSG,std::bind(&ChatService::createGroup,this,_1,_2,_3)});
+    msgHandlerMap_.insert({GROUP_CHAT_MSG,std::bind(&ChatService::groupChat,this,_1,_2,_3)});
     
 }
 //获取消息对应的处理器
@@ -184,3 +187,59 @@ void ChatService::addFriend(const TcpConnectionPtr &conn, json &js, Timestamp ti
 
     friendmodel_.insert(userid,friendid);
 }
+//创建群主
+void ChatService::createGroup(const TcpConnectionPtr& conn,json& js,Timestamp time)
+{
+    int userid = js["userid"].get<int>();
+    string name = js["groupname"];
+    string desc = js["groupdesc"];
+
+    Group group(-1,name,desc);
+    if(groupmodel_.createGroup(group))
+    {
+        groupmodel_.addGroup(userid,group.getId(),"creator");
+    }
+
+}
+//加群
+void ChatService::addGroup(const TcpConnectionPtr& conn,json& js,Timestamp time)
+{
+    int userid = js["userid"];
+    int groupid = js["groupid"];
+    groupmodel_.addGroup(userid,groupid,"normal");
+}
+//群聊
+void ChatService::groupChat(const TcpConnectionPtr& conn,json& js,Timestamp time)
+{
+    int userid = js["userid"];
+    int groupid = js["groupid"];
+
+    vector<int>groupusers = groupmodel_.queryGroupUsers(userid,groupid);
+    lock_guard<mutex>lock(ConnMutex_);
+    for(auto id:groupusers)
+    {
+        auto it = userConn_.find(id);
+       
+        if(it != userConn_.end())
+        {
+            //转发群消息
+            it->second->send(js.dump());
+        }
+        
+        else
+        {
+            User user = usermodel_.query(id);
+            if(user.getState() == "online")
+            {
+                
+            }
+            else
+            {
+                offlinemsgmodel_.insert(id,js.dump());
+            }
+        }
+    }
+}
+
+
+
