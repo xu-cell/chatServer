@@ -9,6 +9,7 @@
 #include "offlinemessagemodel.hpp"
 #include "friendmodel.hpp"
 #include "json.hpp"
+#include "redis.hpp"
 #include <mutex>
 using json  = nlohmann::json;
 using namespace std;
@@ -34,8 +35,11 @@ public:
     void createGroup(const TcpConnectionPtr& conn,json& js,Timestamp time);
     //加群
     void addGroup(const TcpConnectionPtr& conn,json& js,Timestamp time);
+    //用户注销
+    void logOut(const TcpConnectionPtr& conn,json& js,Timestamp time);
     //群聊
     void groupChat(const TcpConnectionPtr& conn,json& js,Timestamp time);
+    void handleRedisSubscribeMessage(int id,string str);
     //添加好友
     void addFriend(const TcpConnectionPtr& conn,json& js,Timestamp time);
     //服务器CTRL_C 挂掉之后的处理代码；
@@ -56,6 +60,9 @@ private:
     GroupModel groupmodel_;
     //业务层维护的用户连接，是所有线程共享的，所以我们要保证线程安全
     mutex ConnMutex_;
+
+    //redis对象
+    Redis _redis;
 };
 
 

@@ -8,6 +8,12 @@
 
 ../include/public.hpp
 
+../include/server/chatserver.hpp
+muduo/net/TcpServer.h
+-
+muduo/net/EventLoop.h
+-
+
 ../include/server/chatservice.hpp
 muduo/net/TcpConnection.h
 -
@@ -25,7 +31,15 @@ friendmodel.hpp
 ../include/server/friendmodel.hpp
 json.hpp
 ../include/server/json.hpp
+redis.hpp
+../include/server/redis.hpp
 mutex
+-
+
+../include/server/db/db.h
+string
+-
+mysql/mysql.h
 -
 
 ../include/server/model/friendmodel.hpp
@@ -67,6 +81,14 @@ string
 ../include/server/model/usermodel.hpp
 user.hpp
 ../include/server/model/user.hpp
+
+../include/server/redis/redis.hpp
+hiredis/hiredis.h
+-
+thread
+-
+functional
+-
 
 ../thirdparty/json.hpp
 algorithm
@@ -398,6 +420,16 @@ limits
 type_traits
 -
 
+/home/ecs-user/chatServer/src/server/chatserver.cpp
+chatserver.hpp
+/home/ecs-user/chatServer/src/server/chatserver.hpp
+functional
+-
+json.hpp
+/home/ecs-user/chatServer/src/server/json.hpp
+chatservice.hpp
+/home/ecs-user/chatServer/src/server/chatservice.hpp
+
 /home/ecs-user/chatServer/src/server/chatservice.cpp
 chatservice.hpp
 /home/ecs-user/chatServer/src/server/chatservice.hpp
@@ -408,5 +440,53 @@ string
 vector
 -
 muduo/base/Logging.h
+-
+
+/home/ecs-user/chatServer/src/server/db/db.cpp
+db.h
+/home/ecs-user/chatServer/src/server/db/db.h
+muduo/base/Logging.h
+-
+
+/home/ecs-user/chatServer/src/server/main.cpp
+chatserver.hpp
+/home/ecs-user/chatServer/src/server/chatserver.hpp
+iostream
+-
+chatservice.hpp
+/home/ecs-user/chatServer/src/server/chatservice.hpp
+signal.h
+-
+
+/home/ecs-user/chatServer/src/server/model/friendmodel.cpp
+friendmodel.hpp
+/home/ecs-user/chatServer/src/server/model/friendmodel.hpp
+db.h
+/home/ecs-user/chatServer/src/server/model/db.h
+
+/home/ecs-user/chatServer/src/server/model/groupmodel.cpp
+groupmodel.hpp
+/home/ecs-user/chatServer/src/server/model/groupmodel.hpp
+db.h
+/home/ecs-user/chatServer/src/server/model/db.h
+
+/home/ecs-user/chatServer/src/server/model/offlinemessagemodel.cpp
+offlinemessagemodel.hpp
+/home/ecs-user/chatServer/src/server/model/offlinemessagemodel.hpp
+db.h
+/home/ecs-user/chatServer/src/server/model/db.h
+
+/home/ecs-user/chatServer/src/server/model/usermodel.cpp
+usermodel.hpp
+/home/ecs-user/chatServer/src/server/model/usermodel.hpp
+db.h
+/home/ecs-user/chatServer/src/server/model/db.h
+iostream
+-
+
+/home/ecs-user/chatServer/src/server/redis/redis.cpp
+redis.hpp
+/home/ecs-user/chatServer/src/server/redis/redis.hpp
+iostream
 -
 

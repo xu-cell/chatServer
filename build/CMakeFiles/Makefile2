@@ -72,18 +72,39 @@ clean: src/clean
 
 # Recursive "all" directory target.
 src/all: src/server/all
+src/all: src/client/all
 
 .PHONY : src/all
 
 # Recursive "preinstall" directory target.
 src/preinstall: src/server/preinstall
+src/preinstall: src/client/preinstall
 
 .PHONY : src/preinstall
 
 # Recursive "clean" directory target.
 src/clean: src/server/clean
+src/clean: src/client/clean
 
 .PHONY : src/clean
+
+#=============================================================================
+# Directory level rules for directory src/client
+
+# Recursive "all" directory target.
+src/client/all: src/client/CMakeFiles/ChatClient.dir/all
+
+.PHONY : src/client/all
+
+# Recursive "preinstall" directory target.
+src/client/preinstall:
+
+.PHONY : src/client/preinstall
+
+# Recursive "clean" directory target.
+src/client/clean: src/client/CMakeFiles/ChatClient.dir/clean
+
+.PHONY : src/client/clean
 
 #=============================================================================
 # Directory level rules for directory src/server
@@ -110,12 +131,12 @@ src/server/clean: src/server/CMakeFiles/ChatServer.dir/clean
 src/server/CMakeFiles/ChatServer.dir/all:
 	$(MAKE) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/depend
 	$(MAKE) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ecs-user/chatServer/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target ChatServer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ecs-user/chatServer/build/CMakeFiles --progress-num=3,4,5,6,7,8,9,10,11,12 "Built target ChatServer"
 .PHONY : src/server/CMakeFiles/ChatServer.dir/all
 
 # Build rule for subdir invocation for target.
 src/server/CMakeFiles/ChatServer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ecs-user/chatServer/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ecs-user/chatServer/build/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 src/server/CMakeFiles/ChatServer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ecs-user/chatServer/build/CMakeFiles 0
 .PHONY : src/server/CMakeFiles/ChatServer.dir/rule
@@ -129,6 +150,33 @@ ChatServer: src/server/CMakeFiles/ChatServer.dir/rule
 src/server/CMakeFiles/ChatServer.dir/clean:
 	$(MAKE) -f src/server/CMakeFiles/ChatServer.dir/build.make src/server/CMakeFiles/ChatServer.dir/clean
 .PHONY : src/server/CMakeFiles/ChatServer.dir/clean
+
+#=============================================================================
+# Target rules for target src/client/CMakeFiles/ChatClient.dir
+
+# All Build rule for target.
+src/client/CMakeFiles/ChatClient.dir/all:
+	$(MAKE) -f src/client/CMakeFiles/ChatClient.dir/build.make src/client/CMakeFiles/ChatClient.dir/depend
+	$(MAKE) -f src/client/CMakeFiles/ChatClient.dir/build.make src/client/CMakeFiles/ChatClient.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ecs-user/chatServer/build/CMakeFiles --progress-num=1,2 "Built target ChatClient"
+.PHONY : src/client/CMakeFiles/ChatClient.dir/all
+
+# Build rule for subdir invocation for target.
+src/client/CMakeFiles/ChatClient.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ecs-user/chatServer/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 src/client/CMakeFiles/ChatClient.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ecs-user/chatServer/build/CMakeFiles 0
+.PHONY : src/client/CMakeFiles/ChatClient.dir/rule
+
+# Convenience name for target.
+ChatClient: src/client/CMakeFiles/ChatClient.dir/rule
+
+.PHONY : ChatClient
+
+# clean rule for target.
+src/client/CMakeFiles/ChatClient.dir/clean:
+	$(MAKE) -f src/client/CMakeFiles/ChatClient.dir/build.make src/client/CMakeFiles/ChatClient.dir/clean
+.PHONY : src/client/CMakeFiles/ChatClient.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

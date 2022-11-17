@@ -45,21 +45,17 @@
         MYSQL_RES* res = mysql.query(sql);
         if(res  != nullptr)
         {
-            MYSQL_ROW row = mysql_fetch_row(res);
-            if(row != nullptr)
+            MYSQL_ROW row;
+            while ((row = mysql_fetch_row(res)) != nullptr)
             {
-                MYSQL_ROW row;
-                while((row = mysql_fetch_row(res))!=nullptr)
-                {
-                    Group group;
-                    group.setID(atoi(row[0]));
-                    group.setName(row[1]);
-                    group.setDesc(row[2]);
-                    vec.push_back(group);
-                }
+                Group group;
+                group.setID(atoi(row[0]));
+                group.setName(row[1]);
+                group.setDesc(row[2]);
+                vec.push_back(group);
             }
+
             mysql_free_result(res);
-            
         }
     }
     //查询群组的用户信息
@@ -72,20 +68,17 @@
         MYSQL_RES *res = mysql.query(sql);
         if (res != nullptr)
         {
-            MYSQL_ROW row = mysql_fetch_row(res);
-            if (row != nullptr)
+            MYSQL_ROW row;
+            while ((row = mysql_fetch_row(res)) != nullptr)
             {
-                MYSQL_ROW row;
-                while ((row = mysql_fetch_row(res)) != nullptr)
-                {
-                    GroupUser user;
-                    user.setID(atoi(row[0]));
-                    user.setName(row[1]);
-                    user.setState(row[2]);
-                    user.setRole(row[3]);
-                    group.getUsers().push_back(user);
-                }
+                GroupUser user;
+                user.setID(atoi(row[0]));
+                user.setName(row[1]);
+                user.setState(row[2]);
+                user.setRole(row[3]);
+                group.getUsers().push_back(user);
             }
+
             mysql_free_result(res);
         }
     }
@@ -104,15 +97,12 @@
         MYSQL_RES* res = mysql.query(sql);
         if(res  != nullptr)
         {
-            MYSQL_ROW row = mysql_fetch_row(res);
-            if(row != nullptr)
+            MYSQL_ROW row;
+            while ((row = mysql_fetch_row(res)) != nullptr)
             {
-                MYSQL_ROW row;
-                while((row = mysql_fetch_row(res))!=nullptr)
-                {
-                   vec.push_back(atoi(row[0]));
-                }
+                vec.push_back(atoi(row[0]));
             }
+
             mysql_free_result(res);
             
         }
